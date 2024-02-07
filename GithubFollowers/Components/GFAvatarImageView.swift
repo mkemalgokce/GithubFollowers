@@ -10,8 +10,9 @@ import UIKit
 final class GFAvatarImageView: UIImageView {
     
     private let placeholderImage = UIImage(resource: .avatarPlaceholder)
+    
     convenience init() {
-        self.init()
+        self.init(frame: .zero)
         configure()
     }
     

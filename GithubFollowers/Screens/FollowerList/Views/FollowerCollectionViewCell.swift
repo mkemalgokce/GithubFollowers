@@ -14,8 +14,13 @@ final class FollowerCollectionViewCell: UICollectionViewCell {
     private let avatarImageView = GFAvatarImageView()
     private let usernameLabel = GFTitleLabel(textAlignment: .center, fontSize: 16)
     
-    convenience init() {
-        self.init()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func set(follower: Follower) {

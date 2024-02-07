@@ -9,7 +9,12 @@ import UIKit
 
 final class FollowerListViewController: UIViewController {
 
+    enum Section {
+        case main
+    }
+    
     private var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
     private let viewModel: FollowerListViewModel
     
     init(username: String) {
@@ -25,8 +30,10 @@ final class FollowerListViewController: UIViewController {
         super.viewDidLoad()
         configureViewController()
         configureCollectionView()
+        configureDataSource()
         viewModel.delegate = self
         viewModel.getFollowerList()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +49,7 @@ extension FollowerListViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
         view.addSubview(collectionView)
         
-        collectionView.backgroundColor = .systemPink
+        collectionView.backgroundColor = .systemBackground
         collectionView.register(FollowerCollectionViewCell.self, forCellWithReuseIdentifier: FollowerCollectionViewCell.reuseIdentifier)
     }
     
@@ -65,19 +72,40 @@ extension FollowerListViewController {
         
         return flowLayout
     }
+    
+    private func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, follower  in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCollectionViewCell.reuseIdentifier, for: indexPath) as? FollowerCollectionViewCell else {
+                fatalError("Unknown error occurred on collection view.")
+            }
+            cell.set(follower: follower)
+            return cell
+        })
+    }
 }
 
 // MARK: - ViewModelDelegate methods
 extension FollowerListViewController: FollowerListViewModelDelegate {
+    
+    private func updateCollectionView() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(viewModel.followers)
+        dataSource.apply(snapshot, animatingDifferences: true)
+
+    }
+    
     func didStartLoading() {
-        print("Loading")
+        showActivityIndicator()
     }
     
     func didFinishLoadingSuccessfully() {
-        print("Finish")
+       hideActivityIndicator()
+        updateCollectionView()
     }
     
     func didFinishLoadingWithError(_ error: Error) {
+        hideActivityIndicator()
         presentGFAlert(title: "Error", message: error.localizedDescription, buttonTitle: "Ok")
     }
     
