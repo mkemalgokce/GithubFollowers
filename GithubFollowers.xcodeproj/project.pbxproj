@@ -72,23 +72,55 @@
 		55E5FD882B7386D0008F305A /* GithubFollowers */ = {
 			isa = PBXGroup;
 			children = (
+				55E5FDB52B73D7BF008F305A /* Extensions */,
+				55E5FDB32B73D7A6008F305A /* App */,
+				55E5FDB22B73D78D008F305A /* Components */,
+				55E5FDB12B73D778008F305A /* Screens */,
+			);
+			path = GithubFollowers;
+			sourceTree = "<group>";
+		};
+		55E5FDB12B73D778008F305A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				55E5FDA52B73A4BA008F305A /* MainTabBarController.swift */,
+				55E5FD9D2B739B2D008F305A /* SearchViewController.swift */,
+				55E5FD9F2B739B66008F305A /* FavouritesListViewController.swift */,
+				55E5FDA92B73C5FE008F305A /* FollowerListViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		55E5FDB22B73D78D008F305A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				55E5FDAF2B73CEC4008F305A /* GFAlertViewController.swift */,
+				55E5FDA12B739F94008F305A /* GFButton.swift */,
+				55E5FDA32B73A1D3008F305A /* GFTextField.swift */,
+				55E5FDAB2B73CBDD008F305A /* GFTitleLabel.swift */,
+				55E5FDAD2B73CD55008F305A /* GFBodyLabel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		55E5FDB32B73D7A6008F305A /* App */ = {
+			isa = PBXGroup;
+			children = (
 				55E5FD892B7386D0008F305A /* AppDelegate.swift */,
 				55E5FD8B2B7386D0008F305A /* SceneDelegate.swift */,
 				55E5FD922B7386D5008F305A /* Assets.xcassets */,
 				55E5FD942B7386D5008F305A /* LaunchScreen.storyboard */,
 				55E5FD972B7386D5008F305A /* Info.plist */,
-				55E5FD9D2B739B2D008F305A /* SearchViewController.swift */,
-				55E5FDAF2B73CEC4008F305A /* GFAlertViewController.swift */,
-				55E5FD9F2B739B66008F305A /* FavouritesListViewController.swift */,
-				55E5FDA12B739F94008F305A /* GFButton.swift */,
-				55E5FDA32B73A1D3008F305A /* GFTextField.swift */,
-				55E5FDA52B73A4BA008F305A /* MainTabBarController.swift */,
-				55E5FDA72B73A722008F305A /* UIViewController+Extensions.swift */,
-				55E5FDA92B73C5FE008F305A /* FollowerListViewController.swift */,
-				55E5FDAB2B73CBDD008F305A /* GFTitleLabel.swift */,
-				55E5FDAD2B73CD55008F305A /* GFBodyLabel.swift */,
 			);
-			path = GithubFollowers;
+			name = App;
+			sourceTree = "<group>";
+		};
+		55E5FDB52B73D7BF008F305A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				55E5FDA72B73A722008F305A /* UIViewController+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
