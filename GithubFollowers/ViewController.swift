@@ -17,3 +17,7 @@ class ViewController: UIViewController {
 
 }
 
+@available(iOS 17, *)
+#Preview {
+    ViewController()
+}
