@@ -9,6 +9,7 @@ import UIKit
 
 final class FollowerListViewController: UIViewController {
 
+    private var collectionView: UICollectionView!
     private let viewModel: FollowerListViewModel
     
     init(username: String) {
@@ -22,9 +23,9 @@ final class FollowerListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewController()
+        configureCollectionView()
         viewModel.delegate = self
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
         viewModel.getFollowerList()
     }
     
@@ -33,6 +34,37 @@ final class FollowerListViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+}
+
+// MARK: - Configure UI Items
+extension FollowerListViewController {
+    private func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
+        view.addSubview(collectionView)
+        
+        collectionView.backgroundColor = .systemPink
+        collectionView.register(FollowerCollectionViewCell.self, forCellWithReuseIdentifier: FollowerCollectionViewCell.reuseIdentifier)
+    }
+    
+    private func configureViewController() {
+        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func createThreeColumnFlowLayout() -> UICollectionViewFlowLayout {
+        let width = view.bounds.width
+        let padding = 12.0
+        let minimumItemSpacing = 10.0
+        let availableWidth = width - (padding * 2) - (minimumItemSpacing * 2)
+        
+        let itemWidth = availableWidth / 3
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
+        
+        return flowLayout
+    }
 }
 
 // MARK: - ViewModelDelegate methods
@@ -46,8 +78,7 @@ extension FollowerListViewController: FollowerListViewModelDelegate {
     }
     
     func didFinishLoadingWithError(_ error: Error) {
-        print("Error: \(error)")
+        presentGFAlert(title: "Error", message: error.localizedDescription, buttonTitle: "Ok")
     }
-    
     
 }

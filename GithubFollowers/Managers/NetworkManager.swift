@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class NetworkManager {
+protocol FollowerAPI {
+    func getFollowers(for username: String, page: Int, completion: @escaping (Result<[Follower], Error>) -> Void)
+}
+
+final class NetworkManager: FollowerAPI {
     static let shared = NetworkManager()
 
     private init() {}
