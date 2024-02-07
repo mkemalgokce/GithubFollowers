@@ -24,24 +24,18 @@ final class NetworkManager {
         }
     }
     
-    enum NetworkError: Error {
-        case invalidUrl
-        case invalidData
-        case badResponse
-    }
+    
     
     func getFollowers(for username: String, page: Int, completion: @escaping (Result<[Follower], Error>) -> Void) {
         guard let url = EndPoint.followers(username: username, page: page).url else {
             completion(.failure(NetworkError.invalidUrl))
             return
         }
-        let request = URLRequest(url: url)
-        print("URL: \(url)")
-        URLSession.shared.dataTask(with: request) { data, response, error in
+       
+        URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil else { completion(.failure(error!)); return }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print(response)
                 completion(.failure(NetworkError.badResponse))
                 return
             }

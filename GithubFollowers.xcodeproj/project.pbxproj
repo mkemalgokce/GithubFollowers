@@ -25,6 +25,7 @@
 		55E5FDBD2B73DE22008F305A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDBC2B73DE22008F305A /* User.swift */; };
 		55E5FDC62B73E8AB008F305A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDC52B73E8AB008F305A /* NetworkManager.swift */; };
 		55E5FDC92B73EE6D008F305A /* FollowerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDC82B73EE6D008F305A /* FollowerListViewModel.swift */; };
+		55E5FDCC2B73F2EB008F305A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDCB2B73F2EB008F305A /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		55E5FDBC2B73DE22008F305A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		55E5FDC52B73E8AB008F305A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		55E5FDC82B73EE6D008F305A /* FollowerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListViewModel.swift; sourceTree = "<group>"; };
+		55E5FDCB2B73F2EB008F305A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		55E5FD882B7386D0008F305A /* GithubFollowers */ = {
 			isa = PBXGroup;
 			children = (
+				55E5FDCA2B73F2E2008F305A /* Utils */,
 				55E5FDBE2B73E861008F305A /* Managers */,
 				55E5FDB52B73D7BF008F305A /* Extensions */,
 				55E5FDB32B73D7A6008F305A /* App */,
@@ -223,6 +226,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		55E5FDCA2B73F2E2008F305A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				55E5FDCB2B73F2EB008F305A /* NetworkError.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -293,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E5FDCC2B73F2EB008F305A /* NetworkError.swift in Sources */,
 				55E5FDA42B73A1D3008F305A /* GFTextField.swift in Sources */,
 				55E5FD8A2B7386D0008F305A /* AppDelegate.swift in Sources */,
 				55E5FDAA2B73C5FE008F305A /* FollowerListViewController.swift in Sources */,

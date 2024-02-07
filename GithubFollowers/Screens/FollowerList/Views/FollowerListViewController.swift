@@ -22,16 +22,32 @@ final class FollowerListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-        viewModel.getFollowerList { result in
-            print("Result: \(result)")
-        }
+        viewModel.getFollowerList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+}
+
+// MARK: - ViewModelDelegate methods
+extension FollowerListViewController: FollowerListViewModelDelegate {
+    func didStartLoading() {
+        print("Loading")
+    }
+    
+    func didFinishLoadingSuccessfully() {
+        print("Finish")
+    }
+    
+    func didFinishLoadingWithError(_ error: Error) {
+        print("Error: \(error)")
+    }
+    
     
 }

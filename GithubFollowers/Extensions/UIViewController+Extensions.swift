@@ -15,13 +15,14 @@ extension UIViewController {
     }
     
     func presentGFAlert(title: String, message: String, buttonTitle: String) {
-        let alertController = GFAlertViewController(alertTitle: title, message: message, buttonTitle: buttonTitle)
-        
-        alertController.modalPresentationStyle = .overFullScreen
-        alertController.modalTransitionStyle = .crossDissolve
-        
+
         DispatchQueue.main.async {
+            let alertController = GFAlertViewController(alertTitle: title, message: message, buttonTitle: buttonTitle)
+            
+            alertController.modalPresentationStyle = .overFullScreen
+            alertController.modalTransitionStyle = .crossDissolve
             self.present(alertController, animated: true)
+            
         }
         
     }
