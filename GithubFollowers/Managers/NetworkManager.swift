@@ -13,7 +13,7 @@ protocol FollowerAPI {
 
 final class NetworkManager: FollowerAPI {
     static let shared = NetworkManager()
-
+    
     private init() {}
     
     enum EndPoint {

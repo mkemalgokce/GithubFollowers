@@ -9,9 +9,7 @@ import UIKit
 
 final class FollowerListViewController: UIViewController {
 
-    enum Section {
-        case main
-    }
+    enum Section { case main }
     
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!

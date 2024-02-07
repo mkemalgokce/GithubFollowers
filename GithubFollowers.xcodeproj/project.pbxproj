@@ -28,6 +28,7 @@
 		55E5FDCC2B73F2EB008F305A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDCB2B73F2EB008F305A /* NetworkError.swift */; };
 		55E5FDCE2B7406E8008F305A /* FollowerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDCD2B7406E8008F305A /* FollowerCollectionViewCell.swift */; };
 		55E5FDD02B740730008F305A /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDCF2B740730008F305A /* GFAvatarImageView.swift */; };
+		55E5FDD22B742BB9008F305A /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDD12B742BB9008F305A /* ImageDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		55E5FDCB2B73F2EB008F305A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		55E5FDCD2B7406E8008F305A /* FollowerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCollectionViewCell.swift; sourceTree = "<group>"; };
 		55E5FDCF2B740730008F305A /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
+		55E5FDD12B742BB9008F305A /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				55E5FDC52B73E8AB008F305A /* NetworkManager.swift */,
+				55E5FDD12B742BB9008F305A /* ImageDownloader.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				55E5FD8A2B7386D0008F305A /* AppDelegate.swift in Sources */,
 				55E5FDAA2B73C5FE008F305A /* FollowerListViewController.swift in Sources */,
 				55E5FDA22B739F94008F305A /* GFButton.swift in Sources */,
+				55E5FDD22B742BB9008F305A /* ImageDownloader.swift in Sources */,
 				55E5FDA62B73A4BA008F305A /* MainTabBarController.swift in Sources */,
 				55E5FDCE2B7406E8008F305A /* FollowerCollectionViewCell.swift in Sources */,
 				55E5FDA82B73A722008F305A /* UIViewController+Extensions.swift in Sources */,
