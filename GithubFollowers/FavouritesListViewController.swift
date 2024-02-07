@@ -1,5 +1,5 @@
 //
-//  FavouritesViewController.swift
+//  FavouritesListViewController.swift
 //  GithubFollowers
 //
 //  Created by Mustafa Kemal Gökçe on 7.02.2024.
