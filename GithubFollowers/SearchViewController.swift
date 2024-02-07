@@ -32,7 +32,10 @@ final class SearchViewController: UIViewController {
     }
     
     private func pushFollowerListViewController() {
-        guard let username = usernameTextField.text, !username.isEmpty else { return }
+        guard let username = usernameTextField.text, !username.isEmpty else {
+            presentGFAlert(title: "Empty Username", message: "Please enter an username. We need to know who to look for.", buttonTitle: "Ok")
+            return
+        }
         let followersViewController = FollowerListViewController(username: username)
         followersViewController.title = usernameTextField.text
         show(followersViewController, sender: self)

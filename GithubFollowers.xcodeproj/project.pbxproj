@@ -20,6 +20,7 @@
 		55E5FDAA2B73C5FE008F305A /* FollowerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDA92B73C5FE008F305A /* FollowerListViewController.swift */; };
 		55E5FDAC2B73CBDD008F305A /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDAB2B73CBDD008F305A /* GFTitleLabel.swift */; };
 		55E5FDAE2B73CD55008F305A /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDAD2B73CD55008F305A /* GFBodyLabel.swift */; };
+		55E5FDB02B73CEC4008F305A /* GFAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDAF2B73CEC4008F305A /* GFAlertViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		55E5FDA92B73C5FE008F305A /* FollowerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListViewController.swift; sourceTree = "<group>"; };
 		55E5FDAB2B73CBDD008F305A /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		55E5FDAD2B73CD55008F305A /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
+		55E5FDAF2B73CEC4008F305A /* GFAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				55E5FD942B7386D5008F305A /* LaunchScreen.storyboard */,
 				55E5FD972B7386D5008F305A /* Info.plist */,
 				55E5FD9D2B739B2D008F305A /* SearchViewController.swift */,
+				55E5FDAF2B73CEC4008F305A /* GFAlertViewController.swift */,
 				55E5FD9F2B739B66008F305A /* FavouritesListViewController.swift */,
 				55E5FDA12B739F94008F305A /* GFButton.swift */,
 				55E5FDA32B73A1D3008F305A /* GFTextField.swift */,
@@ -168,6 +171,7 @@
 				55E5FDA02B739B66008F305A /* FavouritesListViewController.swift in Sources */,
 				55E5FDAC2B73CBDD008F305A /* GFTitleLabel.swift in Sources */,
 				55E5FD8C2B7386D0008F305A /* SceneDelegate.swift in Sources */,
+				55E5FDB02B73CEC4008F305A /* GFAlertViewController.swift in Sources */,
 				55E5FDAE2B73CD55008F305A /* GFBodyLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
