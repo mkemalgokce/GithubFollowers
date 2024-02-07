@@ -18,6 +18,7 @@
 		55E5FDA62B73A4BA008F305A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDA52B73A4BA008F305A /* MainTabBarController.swift */; };
 		55E5FDA82B73A722008F305A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDA72B73A722008F305A /* UIViewController+Extensions.swift */; };
 		55E5FDAA2B73C5FE008F305A /* FollowerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDA92B73C5FE008F305A /* FollowerListViewController.swift */; };
+		55E5FDAC2B73CBDD008F305A /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDAB2B73CBDD008F305A /* GFTitleLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		55E5FDA52B73A4BA008F305A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		55E5FDA72B73A722008F305A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		55E5FDA92B73C5FE008F305A /* FollowerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListViewController.swift; sourceTree = "<group>"; };
+		55E5FDAB2B73CBDD008F305A /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				55E5FDA52B73A4BA008F305A /* MainTabBarController.swift */,
 				55E5FDA72B73A722008F305A /* UIViewController+Extensions.swift */,
 				55E5FDA92B73C5FE008F305A /* FollowerListViewController.swift */,
+				55E5FDAB2B73CBDD008F305A /* GFTitleLabel.swift */,
 			);
 			path = GithubFollowers;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				55E5FDA82B73A722008F305A /* UIViewController+Extensions.swift in Sources */,
 				55E5FD9E2B739B2D008F305A /* SearchViewController.swift in Sources */,
 				55E5FDA02B739B66008F305A /* FavouritesListViewController.swift in Sources */,
+				55E5FDAC2B73CBDD008F305A /* GFTitleLabel.swift in Sources */,
 				55E5FD8C2B7386D0008F305A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

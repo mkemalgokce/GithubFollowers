@@ -32,7 +32,7 @@ final class SearchViewController: UIViewController {
     }
     
     private func pushFollowerListViewController() {
-        guard let username = usernameTextField.text, !username.isEmpty else {return}
+        guard let username = usernameTextField.text, !username.isEmpty else { return }
         let followersViewController = FollowerListViewController(username: username)
         followersViewController.title = usernameTextField.text
         show(followersViewController, sender: self)
