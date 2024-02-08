@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol UserInfoViewControllerDelegate: AnyObject {
+    func didTapGithubProfile()
+    func didTapGetFollowers()
+}
+
 class UserInfoViewController: UIViewController {
 
     private let viewModel: UserInfoViewModel
     private let headerView = UIView()
     private let itemViewOne = UIView()
     private let itemViewTwo = UIView()
+    private let dateLabel = GFBodyLabel(textAlignment: .center)
     
     init(username: String) {
         self.viewModel = UserInfoViewModel(username: username)
@@ -51,9 +57,9 @@ extension UserInfoViewController {
     private func setupView() {
         view.backgroundColor = .systemBackground
         
-        let itemViews = [headerView, itemViewOne, itemViewTwo]
+        let itemViews = [headerView, itemViewOne, itemViewTwo, dateLabel]
         
-        for (index, itemView) in itemViews.enumerated() {
+        for itemView in itemViews {
             view.addSubview(itemView)
             itemView.translatesAutoresizingMaskIntoConstraints = false
             
@@ -64,11 +70,6 @@ extension UserInfoViewController {
             
         }
         
-        itemViewOne.backgroundColor = .yellow
-        itemViewTwo.backgroundColor = .purple
-        
-    
-        
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 180),
@@ -78,6 +79,9 @@ extension UserInfoViewController {
             
             itemViewTwo.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: 20),
             itemViewTwo.heightAnchor.constraint(equalToConstant: 140),
+            
+            dateLabel.topAnchor.constraint(equalTo: itemViewTwo.bottomAnchor, constant: 20),
+            dateLabel.heightAnchor.constraint(equalToConstant: 18),
             
         ])
     }
@@ -98,8 +102,21 @@ extension UserInfoViewController: UserInfoViewModelDelegate {
     func didFinishLoadingSuccessfully() {
         hideLoadingView { [weak self] in
             guard let self, let user = viewModel.user else { return }
-            add(child: GFUserInfoHeaderViewController(user: user), to: headerView)
+            createChildViewControllers(user: user)
+            dateLabel.text = "Github since \(user.createdAt.convertToDisplayFormat())"
         }
+    }
+    
+    private func createChildViewControllers(user: User) {
+        let repoViewController = GFRepoItemViewController(user: user)
+        let followerViewController = GFFollowerItemViewController(user: user)
+        
+        repoViewController.delegate = self
+        followerViewController.delegate = self
+        
+        add(child: GFUserInfoHeaderViewController(user: user), to: headerView)
+        add(child: repoViewController, to: itemViewOne)
+        add(child: followerViewController, to: itemViewTwo)
     }
     
     func didFinishLoadingWithError(_ error: Error) {
@@ -108,5 +125,18 @@ extension UserInfoViewController: UserInfoViewModelDelegate {
         }
     }
     
+    
+}
+
+
+// MARK: - UserInfoViewController delegate methods
+extension UserInfoViewController: UserInfoViewControllerDelegate {
+    func didTapGithubProfile() {
+        //TODO: open safari
+    }
+    
+    func didTapGetFollowers() {
+        //TODO: show followerlist viewcontroller
+    }
     
 }
