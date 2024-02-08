@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configureTabBar() {
         UITabBar.appearance().tintColor = .systemGreen
+        UITabBar.appearance().backgroundColor = .systemGray.withAlphaComponent(0.2)
     }
 
     func configureNavigationBar() {

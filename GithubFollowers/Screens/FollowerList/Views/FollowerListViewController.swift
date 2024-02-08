@@ -100,8 +100,15 @@ extension FollowerListViewController: FollowerListViewModelDelegate {
     }
     
     func didFinishLoadingSuccessfully() {
-        hideLoadingView()
-        updateCollectionView()
+        hideLoadingView { [weak self ] in
+            guard let self else { return }
+            if (viewModel.followers.isEmpty) {
+               showEmptyStateView(with: "This user doesn't have any followers. Go follow them 😄", in: view)
+            }else {
+                updateCollectionView()
+            }
+        }
+        
     }
     
     func didFinishLoadingWithError(_ error: Error) {

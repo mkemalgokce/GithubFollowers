@@ -29,6 +29,7 @@
 		55E5FDCE2B7406E8008F305A /* FollowerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDCD2B7406E8008F305A /* FollowerCollectionViewCell.swift */; };
 		55E5FDD02B740730008F305A /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDCF2B740730008F305A /* GFAvatarImageView.swift */; };
 		55E5FDD22B742BB9008F305A /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDD12B742BB9008F305A /* ImageDownloader.swift */; };
+		55E5FDD82B74E6A7008F305A /* GFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5FDD72B74E6A7008F305A /* GFEmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		55E5FDCD2B7406E8008F305A /* FollowerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCollectionViewCell.swift; sourceTree = "<group>"; };
 		55E5FDCF2B740730008F305A /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
 		55E5FDD12B742BB9008F305A /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		55E5FDD72B74E6A7008F305A /* GFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFEmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				55E5FDAB2B73CBDD008F305A /* GFTitleLabel.swift */,
 				55E5FDAD2B73CD55008F305A /* GFBodyLabel.swift */,
 				55E5FDCF2B740730008F305A /* GFAvatarImageView.swift */,
+				55E5FDD72B74E6A7008F305A /* GFEmptyStateView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				55E5FDC92B73EE6D008F305A /* FollowerListViewModel.swift in Sources */,
 				55E5FDBB2B73DDA3008F305A /* Follower.swift in Sources */,
 				55E5FDA02B739B66008F305A /* FavouritesListViewController.swift in Sources */,
+				55E5FDD82B74E6A7008F305A /* GFEmptyStateView.swift in Sources */,
 				55E5FDAC2B73CBDD008F305A /* GFTitleLabel.swift in Sources */,
 				55E5FD8C2B7386D0008F305A /* SceneDelegate.swift in Sources */,
 				55E5FDC62B73E8AB008F305A /* NetworkManager.swift in Sources */,
