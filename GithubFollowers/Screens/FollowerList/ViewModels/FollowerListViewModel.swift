@@ -20,6 +20,7 @@ final class FollowerListViewModel {
     private var hasMoreFollowers = true
     let service: FollowerAPI
     var followers: [Follower] = []
+    var filteredFollowers: [Follower] = []
     
     weak var delegate: FollowerListViewModelDelegate?
     
@@ -44,5 +45,9 @@ final class FollowerListViewModel {
             }
         }
         
+    }
+    
+    func filter(_ filter: String) {
+        filteredFollowers = followers.filter { $0.login.lowercased().contains(filter.lowercased())}
     }
 }

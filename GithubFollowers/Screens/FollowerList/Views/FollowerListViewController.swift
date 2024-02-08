@@ -26,9 +26,12 @@ final class FollowerListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureViewController()
+        configureSearchController()
         configureCollectionView()
         configureDataSource()
+        
         viewModel.delegate = self
         viewModel.fetchFollowers()
         
@@ -82,15 +85,25 @@ extension FollowerListViewController {
             return cell
         })
     }
+    
+    private func configureSearchController() {
+        let searchController = UISearchController()
+        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        
+        searchController.searchBar.placeholder = "Search for a username"
+        navigationItem.searchController = searchController
+    }
 }
 
 // MARK: - ViewModelDelegate methods
 extension FollowerListViewController: FollowerListViewModelDelegate {
     
-    private func updateCollectionView() {
+    private func updateCollectionView(with followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(viewModel.followers)
+        snapshot.appendItems(followers)
         dataSource.apply(snapshot, animatingDifferences: true)
 
     }
@@ -105,10 +118,9 @@ extension FollowerListViewController: FollowerListViewModelDelegate {
             if (viewModel.followers.isEmpty) {
                showEmptyStateView(with: "This user doesn't have any followers. Go follow them 😄", in: view)
             }else {
-                updateCollectionView()
+                updateCollectionView(with: viewModel.followers)
             }
         }
-        
     }
     
     func didFinishLoadingWithError(_ error: Error) {
@@ -118,6 +130,7 @@ extension FollowerListViewController: FollowerListViewModelDelegate {
     
 }
 
+//MARK: - UICollectionViewDelegate methods
 extension FollowerListViewController: UICollectionViewDelegate {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -128,5 +141,22 @@ extension FollowerListViewController: UICollectionViewDelegate {
         if offsetY > contentHeight - height {
             viewModel.fetchFollowers()
         }
+    }
+}
+
+//MARK: - UISearchResultsUpdating methods
+extension FollowerListViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            updateCollectionView(with: viewModel.followers)
+            return
+        }
+        viewModel.filter(filter)
+        updateCollectionView(with: viewModel.filteredFollowers)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        updateCollectionView(with: viewModel.followers)
     }
 }
