@@ -11,8 +11,11 @@ final class GFAvatarImageView: UIImageView {
     
     private let placeholderImage = UIImage(resource: .avatarPlaceholder)
     
+    private var downloader: ImageDownloaderProtocol?
+    
     convenience init() {
         self.init(frame: .zero)
+        downloader = ImageDownloader.shared
         configure()
     }
     
@@ -24,9 +27,9 @@ final class GFAvatarImageView: UIImageView {
     }
     
     func downloadImage(from urlString: String) {
-        ImageDownloader.shared.download(from: urlString) { [weak self] data in
+        downloader?.download(from: urlString, completion: { [weak self] data in
             self?.updateImage(from: data)
-        }
+        })
     }
     
     private func updateImage(from data: Data?) {

@@ -16,23 +16,28 @@ protocol FollowerListViewModelDelegate: AnyObject {
 final class FollowerListViewModel {
     
     let username: String
+    private var currentPage: Int = 1
+    private var hasMoreFollowers = true
     let service: FollowerAPI
     var followers: [Follower] = []
     
     weak var delegate: FollowerListViewModelDelegate?
     
-    init(username: String, service: FollowerAPI = NetworkManager.shared) {
+    init(username: String, service: FollowerAPI = FollowerAPI()) {
         self.username = username
         self.service = service
     }
     
-    func getFollowerList() {
+    func fetchFollowers() {
+        guard hasMoreFollowers else { return }
         delegate?.didStartLoading()
         
-        service.getFollowers(for: username, page: 1) { [weak self] result in
+        service.getFollowers(for: username, page: currentPage) { [weak self] result in
             switch result {
                 case .success(let success):
-                    self?.followers = success
+                    if success.count < 100 { self?.hasMoreFollowers = false }
+                    self?.currentPage += 1
+                    self?.followers.append(contentsOf: success)
                     self?.delegate?.didFinishLoadingSuccessfully()
                 case .failure(let failure):
                     self?.delegate?.didFinishLoadingWithError(failure)

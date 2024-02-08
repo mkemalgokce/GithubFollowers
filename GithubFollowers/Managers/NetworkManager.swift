@@ -7,15 +7,11 @@
 
 import Foundation
 
-protocol FollowerAPI {
+protocol FollowerAPIProtocol {
     func getFollowers(for username: String, page: Int, completion: @escaping (Result<[Follower], Error>) -> Void)
 }
 
-final class NetworkManager: FollowerAPI {
-    static let shared = NetworkManager()
-    
-    private init() {}
-    
+final class FollowerAPI: FollowerAPIProtocol {
     enum EndPoint {
         static let baseUrl = "https://api.github.com"
         case followers(username: String, page: Int)
@@ -27,8 +23,6 @@ final class NetworkManager: FollowerAPI {
             }
         }
     }
-    
-    
     
     func getFollowers(for username: String, page: Int, completion: @escaping (Result<[Follower], Error>) -> Void) {
         guard let url = EndPoint.followers(username: username, page: page).url else {

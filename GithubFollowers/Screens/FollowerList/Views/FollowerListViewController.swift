@@ -30,7 +30,7 @@ final class FollowerListViewController: UIViewController {
         configureCollectionView()
         configureDataSource()
         viewModel.delegate = self
-        viewModel.getFollowerList()
+        viewModel.fetchFollowers()
         
     }
     
@@ -46,6 +46,8 @@ extension FollowerListViewController {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
         view.addSubview(collectionView)
+        
+        collectionView.delegate = self
         
         collectionView.backgroundColor = .systemBackground
         collectionView.register(FollowerCollectionViewCell.self, forCellWithReuseIdentifier: FollowerCollectionViewCell.reuseIdentifier)
@@ -107,4 +109,17 @@ extension FollowerListViewController: FollowerListViewModelDelegate {
         presentGFAlert(title: "Error", message: error.localizedDescription, buttonTitle: "Ok")
     }
     
+}
+
+extension FollowerListViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.bounds.height
+        
+        if offsetY + 50 > contentHeight - height {
+            viewModel.fetchFollowers()
+        }
+    }
 }
