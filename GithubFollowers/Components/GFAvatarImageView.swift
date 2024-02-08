@@ -13,10 +13,14 @@ final class GFAvatarImageView: UIImageView {
     
     private var downloader: ImageDownloaderProtocol?
     
-    convenience init() {
-        self.init(frame: .zero)
+    init() {
+        super.init(frame: .zero)
         downloader = ImageDownloader.shared
         configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func configure() {

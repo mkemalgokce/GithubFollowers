@@ -17,7 +17,7 @@ final class UserInfoViewModel {
     
     private let service: UserInfoAPIProtocol
     private let username: String
-    private var user: User?
+    private(set) var user: User?
     weak var delegate: UserInfoViewModelDelegate?
     
     init(username: String, service: UserInfoAPIProtocol = UserInfoAPI()) {
