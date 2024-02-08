@@ -96,16 +96,16 @@ extension FollowerListViewController: FollowerListViewModelDelegate {
     }
     
     func didStartLoading() {
-        showActivityIndicator()
+        showLoadingView()
     }
     
     func didFinishLoadingSuccessfully() {
-       hideActivityIndicator()
+        hideLoadingView()
         updateCollectionView()
     }
     
     func didFinishLoadingWithError(_ error: Error) {
-        hideActivityIndicator()
+        hideLoadingView()
         presentGFAlert(title: "Error", message: error.localizedDescription, buttonTitle: "Ok")
     }
     
@@ -118,7 +118,7 @@ extension FollowerListViewController: UICollectionViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.bounds.height
         
-        if offsetY + 50 > contentHeight - height {
+        if offsetY > contentHeight - height {
             viewModel.fetchFollowers()
         }
     }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+fileprivate var containerView: UIView!
+
 extension UIViewController {
     
     func createDismissKeyboardTapGesture() {
@@ -25,24 +27,31 @@ extension UIViewController {
         }
     }
     
-    func showActivityIndicator() {
-        DispatchQueue.main.async {
-            let activityIndicator = UIActivityIndicatorView(style: .large)
-            activityIndicator.center = self.view.center
-            activityIndicator.startAnimating()
-            
-            self.view.addSubview(activityIndicator)
-            self.view.isUserInteractionEnabled = false
-        }
+    func showLoadingView() {
+        containerView = UIView(frame: view.bounds)
+        view.addSubview(containerView)
+        
+        containerView.backgroundColor = .systemBackground
+        containerView.alpha = 0
+        
+        UIView.animate(withDuration: 0.25) { containerView.alpha = 0.8 }
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        containerView.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+        
+        activityIndicator.startAnimating()
     }
     
-    func hideActivityIndicator() {
+    func hideLoadingView() {
         DispatchQueue.main.async {
-            if let activityIndicator = self.view.subviews.first(where: { $0 is UIActivityIndicatorView }) as? UIActivityIndicatorView {
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
-                self.view.isUserInteractionEnabled = true
-            }
+            containerView.removeFromSuperview()
+            containerView = nil
         }
     }
 }
