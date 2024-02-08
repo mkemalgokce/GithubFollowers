@@ -142,6 +142,15 @@ extension FollowerListViewController: UICollectionViewDelegate {
             viewModel.fetchFollowers()
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let follower = viewModel.get(on: indexPath) else { return }
+       
+        let destinationViewController = UserInfoViewController(username: follower.login)
+        let navigationController = UINavigationController(rootViewController: destinationViewController)
+        
+        present(navigationController, animated: true)
+    }
 }
 
 //MARK: - UISearchResultsUpdating methods
@@ -149,6 +158,7 @@ extension FollowerListViewController: UISearchResultsUpdating, UISearchBarDelega
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            viewModel.endSearching()
             updateCollectionView(with: viewModel.followers)
             return
         }
@@ -157,6 +167,7 @@ extension FollowerListViewController: UISearchResultsUpdating, UISearchBarDelega
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.endSearching()
         updateCollectionView(with: viewModel.followers)
     }
 }

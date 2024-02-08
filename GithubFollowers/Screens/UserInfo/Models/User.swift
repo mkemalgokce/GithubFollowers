@@ -18,7 +18,7 @@ struct User: Codable {
     let htmlUrl: String
     let following: Int
     let followers: Int
-    let createdAt: Int
+    let createdAt: String
     
     enum CodingKeys: String, CodingKey {
         case login
