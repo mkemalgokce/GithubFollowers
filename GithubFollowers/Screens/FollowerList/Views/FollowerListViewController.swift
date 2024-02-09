@@ -46,6 +46,10 @@ final class FollowerListViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    @objc private func addNavBarButtonItemTapped() {
+        viewModel.getUserInfo()
+    }
+    
 }
 
 // MARK: - Configure UI Items
@@ -63,6 +67,9 @@ extension FollowerListViewController {
     private func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(addNavBarButtonItemTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     private func createThreeColumnFlowLayout() -> UICollectionViewFlowLayout {
@@ -103,6 +110,11 @@ extension FollowerListViewController {
 
 // MARK: - ViewModelDelegate methods
 extension FollowerListViewController: FollowerListViewModelDelegate {
+    func didFinishUserInfoFetchingSuccessfully(_ follower: Follower) {
+        hideLoadingView { [weak self] in
+            self?.presentGFAlert(title: "Success!", message: "You have successfully favorited this user", buttonTitle: "Hooray!")
+        }
+    }
     
     private func updateCollectionView(with followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
@@ -113,7 +125,6 @@ extension FollowerListViewController: FollowerListViewModelDelegate {
     }
     
     func didStartLoading() {
-        print("Start loading ... ")
         showLoadingView()
     }
     
