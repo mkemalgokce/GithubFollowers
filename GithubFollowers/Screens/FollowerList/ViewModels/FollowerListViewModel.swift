@@ -15,7 +15,7 @@ protocol FollowerListViewModelDelegate: AnyObject {
 
 final class FollowerListViewModel {
     
-    private let username: String
+    private var username: String
     private let service: FollowerAPI
     private var currentPage: Int = 1
     private var hasMoreFollowers = true
@@ -63,5 +63,13 @@ final class FollowerListViewModel {
         let activeArray = isSearching ? filteredFollowers : followers
         if indexPath.item >= activeArray.count { return nil }
         return activeArray[indexPath.item]
+    }
+    
+    func reset(with username: String) {
+        self.username = username
+        followers.removeAll()
+        filteredFollowers.removeAll()
+        hasMoreFollowers = true
+        currentPage = 1
     }
 }

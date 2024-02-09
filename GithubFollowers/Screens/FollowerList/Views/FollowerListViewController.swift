@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol FollowerListViewControllerDelegate: AnyObject {
+    func didRequestFollowers(for username: String)
+}
+
 final class FollowerListViewController: UIViewController {
 
     enum Section { case main }
@@ -109,6 +113,7 @@ extension FollowerListViewController: FollowerListViewModelDelegate {
     }
     
     func didStartLoading() {
+        print("Start loading ... ")
         showLoadingView()
     }
     
@@ -118,6 +123,7 @@ extension FollowerListViewController: FollowerListViewModelDelegate {
             if (viewModel.followers.isEmpty) {
                showEmptyStateView(with: "This user doesn't have any followers. Go follow them 😄", in: view)
             }else {
+                print("Update with: \(viewModel.followers)")
                 updateCollectionView(with: viewModel.followers)
             }
         }
@@ -147,6 +153,7 @@ extension FollowerListViewController: UICollectionViewDelegate {
         guard let follower = viewModel.get(on: indexPath) else { return }
        
         let destinationViewController = UserInfoViewController(username: follower.login)
+        destinationViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: destinationViewController)
         
         present(navigationController, animated: true)
@@ -170,4 +177,16 @@ extension FollowerListViewController: UISearchResultsUpdating, UISearchBarDelega
         viewModel.endSearching()
         updateCollectionView(with: viewModel.followers)
     }
+}
+
+//MARK: - FollowerListViewControllerDelegate methods
+extension FollowerListViewController: FollowerListViewControllerDelegate {
+    
+    func didRequestFollowers(for username: String) {
+        viewModel.reset(with: username)
+        title = username
+        collectionView.setContentOffset(.zero, animated: true)
+        viewModel.fetchFollowers()
+    }
+    
 }

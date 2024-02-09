@@ -21,7 +21,7 @@ final class GFRepoItemViewController: GFItemInfoViewController {
     }
     
     override func actionButtonTapped() {
-        delegate?.didTapGithubProfile()
+        delegate?.didTapGithubProfile(for: user)
     }
 }
 

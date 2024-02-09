@@ -6,19 +6,22 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol UserInfoViewControllerDelegate: AnyObject {
-    func didTapGithubProfile()
-    func didTapGetFollowers()
+    func didTapGithubProfile(for user: User)
+    func didTapGetFollowers(for user: User)
 }
 
 class UserInfoViewController: UIViewController {
-
+    
     private let viewModel: UserInfoViewModel
     private let headerView = UIView()
     private let itemViewOne = UIView()
     private let itemViewTwo = UIView()
     private let dateLabel = GFBodyLabel(textAlignment: .center)
+    
+    weak var delegate: FollowerListViewControllerDelegate?
     
     init(username: String) {
         self.viewModel = UserInfoViewModel(username: username)
@@ -131,12 +134,24 @@ extension UserInfoViewController: UserInfoViewModelDelegate {
 
 // MARK: - UserInfoViewController delegate methods
 extension UserInfoViewController: UserInfoViewControllerDelegate {
-    func didTapGithubProfile() {
-        //TODO: open safari
+    func didTapGithubProfile(for user: User) {
+        guard let url = URL(string: user.htmlUrl) else {
+            presentGFAlert(title: "Invalid URL",
+                           message: "The URL attached to this user is invalid",
+                           buttonTitle: "Ok")
+            return
+        }
+        presentSafariViewController(with: url)
+        
     }
     
-    func didTapGetFollowers() {
-        //TODO: show followerlist viewcontroller
+    func didTapGetFollowers(for user: User) {
+        guard user.followers != 0 else {
+            presentGFAlert(title: "No followers", message: "This user has no followers.", buttonTitle: "So sad")
+            return
+        }
+        delegate?.didRequestFollowers(for: user.login)
+        dismiss(animated: true)
     }
     
 }
